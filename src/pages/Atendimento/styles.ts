@@ -31,6 +31,11 @@ export const DisplayTela02 = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  button{
+    width: 200px;
+    height: 80px;
+    cursor: pointer;
+  }
   h2{
     margin-bottom: 10px;
   }

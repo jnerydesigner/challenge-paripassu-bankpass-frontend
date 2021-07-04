@@ -14,6 +14,7 @@ export const Container = styled.button<PassProps>`
   cursor: pointer;
   border: 0;
   border-radius: 8px;
+  margin: 0 auto;
 
   ${({ typeButton }) => typeButton === 'P' ? css`
     background-color: #DA85A4;

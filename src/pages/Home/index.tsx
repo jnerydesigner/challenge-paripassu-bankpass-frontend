@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { Header } from '../../components/Header';
+import {
+  Grid,
+  Heading
+} from '@chakra-ui/react';
+import { HeaderGerencial } from '../../components/HeaderGerencial';
 import { PassBank } from '../../components/PassBank';
 import { PassBankButton } from '../../components/PassBankButton';
-import { api } from '../../services/api';
+import api from '../../services/api';
 
-import {
-  Container,
-  Content,
-  PassBankContainer,
-} from './styles';
 
 
 
@@ -21,18 +20,33 @@ export function Home() {
   }
 
   return (
-    <Container>
-      <Header />
-      <Content>
-        <h1>Clique em uma das opções
-          abaixo para gerar sua senha.</h1>
-        <PassBankContainer>
+    <>
+
+      <HeaderGerencial />
+
+
+      <Grid
+        backgroundColor="gray.100"
+        w={1000}
+        maxWidth={1480}
+        height="500px"
+        align="center"
+        templateRows="50px 1fr 1fr"
+        borderRadius="5"
+      >
+        <Heading color="gray.500" mt="3" p="0" mx="auto" >Clique em uma das opções
+          abaixo para gerar sua senha.</Heading>
+        <Grid templateColumns="repeat(2, 1fr)" justifyContent="center" alignItems="center">
           <PassBankButton titleButton="Preferêncial" typeButton="P" onSubmitTicket={() => handleSubmitTicket("P")} />
           <PassBankButton titleButton="Normal" typeButton="N" onSubmitTicket={() => handleSubmitTicket("N")} />
-        </PassBankContainer>
-        <h1>Sua senha Gerada é:</h1>
-        <PassBank titleButton={ticket} typeButton="SN" />
-      </Content>
-    </Container>
+        </Grid>
+        <Grid templateColumns="repeat(2, 1fr)" justifyContent="center" alignItems="center">
+          <Heading color="gray.500" p="0" mx="auto">Sua senha Gerada é:</Heading>
+          <PassBank titleButton={ticket} typeButton="SN" />
+        </Grid>
+
+
+      </Grid>
+    </>
   );
 };

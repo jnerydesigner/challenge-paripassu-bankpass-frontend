@@ -9,6 +9,21 @@ export const Container = styled.div`
   align-items: center;
   border-radius: 5px;
   margin-bottom: 10px;
+  ul{
+    list-style: none;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: row;
+    li{
+      a{
+        text-decoration: none;
+        padding: 10px 20px;
+        &:hover{
+          background-color: #fab1a0;
+        }
+      }
+    }
+  }
 
   image{
     width: 80px;

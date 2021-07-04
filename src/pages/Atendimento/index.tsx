@@ -1,66 +1,80 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Header } from '../../components/Header';
+import React from 'react';
+import {
+  Grid,
+  Box,
+  Heading,
+  List
+} from '@chakra-ui/react'
+import { useFetchTicketsQuery } from '../../features/tickets/tickets-api-slice';
+import { HeaderGerencial } from '../../components/HeaderGerencial';
 import { ItemLista } from '../../components/ItemLista';
 import { PassBank } from '../../components/PassBank';
-// import { api } from '../../services/api';
 
-import {
-  Container,
-  Content,
-  DisplayTela01,
-  DisplayTela02,
-  ListaSenha,
-} from './styles';
-
-
-interface ListaProps {
-  id: number;
-  ticket: string;
-  type: string;
-}
 
 
 export function Atendimento() {
-  const [lista, setLista] = useState<ListaProps[]>([]);
 
-  useEffect(() => {
-    async function fetchLista() {
-      const listPromise = await axios.get("http://localhost:3004/tickets?_limit=5");
-      const { data } = listPromise;
+  const { data = [] } = useFetchTicketsQuery();
 
-      setLista(data);
-    }
-
-    fetchLista();
-
-  }, []);
 
 
   return (
     <>
-
-      <Container>
-        <Header />
-        <Content>
-          <DisplayTela01>
-            <h2>Senha Atual</h2>
-            <PassBank titleButton="1234" typeButton="P" />
-          </DisplayTela01>
-          <DisplayTela02 >
-            <h2>Lista de Senhas Já Chamadas</h2>
-            <ListaSenha>
-              {lista.map(itemLista => (
-                <ItemLista key={itemLista.id} pass={itemLista.ticket} typeLista={itemLista.type} />
-              ))}
-            </ListaSenha>
-          </DisplayTela02>
-        </Content>
+      <HeaderGerencial />
 
 
+      <Grid
+        backgroundColor="gray.100"
+        w={1000}
+        maxWidth={1480}
+        height="500px"
+        align="center"
+        justifyContent="space-between"
+        templateColumns="repeat(2, 1fr)"
+        gap={3}
+        px={3}
+        py={3}
+        borderRadius="5"
+      >
+        <Box
+          w="100%"
+          h="100%"
+          bg="gray.50"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          p="2"
+        >
+          <Heading>Senha Chamando</Heading>
+          <PassBank titleButton="P2345" typeButton="P" />
 
-      </Container>
+        </Box>
+        <Box
+          w="100%"
+          h="100%"
+          bg="gray.50"
+          p="2"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
 
+          <List
+            w="100%"
+            h="100%"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="column"
+          >
+            {data.map(itemLista => (
+              <ItemLista key={itemLista.id} pass={itemLista.ticket} typeLista={itemLista.type} />
+            ))}
+          </List>
+
+        </Box>
+      </Grid>
     </>
   );
 };

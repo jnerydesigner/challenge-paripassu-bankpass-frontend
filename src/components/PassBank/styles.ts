@@ -12,6 +12,7 @@ export const Container = styled.div<PassProps>`
   justify-content: center;
   align-items: center;
   border-radius: 8px;
+  margin: 0 auto;
 
   ${({ typeButton }) => typeButton === 'P' ? css`
     background-color: #DA85A4;

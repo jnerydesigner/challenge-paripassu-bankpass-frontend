@@ -1,22 +1,21 @@
 import React from 'react';
-// import { Home } from './pages/Home';
-// import { ManagementPass } from './pages/ManagementPass';
-import { Atendimento } from './pages/Atendimento';
+import { ChakraProvider } from "@chakra-ui/react";
+import { theme } from '../src/styles/theme';
+import { Provider } from 'react-redux';
+import { store } from '../src/store/store'
+import { Routes } from '../src/routes';
 import { GlobalStyle } from './theme/globalStyles';
-// import { ChakraProvider } from "@chakra-ui/react";
-// import { themes } from './theme/style';
+
 
 export function App() {
   return (
     <>
-      {/* <ChakraProvider theme={themes}> */}
-      {/* <Home /> */}
-      {/* <ManagementPass /> */}
-      <Atendimento />
-
+      <Provider store={store}>
+        <ChakraProvider theme={theme}>
+          <Routes />
+        </ChakraProvider>
+      </Provider>
       <GlobalStyle />
-
-      {/* </ChakraProvider> */}
     </>
   );
 }
