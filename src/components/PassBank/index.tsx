@@ -3,7 +3,7 @@ import React from 'react';
 import { Container } from './styles';
 
 interface PassBankProps {
-  titleButton: string;
+  titleButton?: string;
   typeButton: string;
 }
 

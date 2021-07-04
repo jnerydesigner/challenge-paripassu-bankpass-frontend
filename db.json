@@ -1,0 +1,54 @@
+{
+  "tickets":[
+    {
+      "id":1,
+      "ticket": "P2345",
+      "type": "P"
+    },
+    {
+      "id":2,
+      "ticket": "N2345",
+      "type": "N"
+    },
+    {
+      "id":3,
+      "ticket": "P2345",
+      "type": "P"
+    },
+    {
+      "id":4,
+      "ticket": "P2345",
+      "type": "P"
+    },
+    {
+      "id":5,
+      "ticket": "N2345",
+      "type": "N"
+    },
+    {
+      "id":6,
+      "ticket": "P2345",
+      "type": "N"
+    },
+    {
+      "id":7,
+      "ticket": "P2345",
+      "type": "N"
+    },
+    {
+      "id":8,
+      "ticket": "P2345",
+      "type": "N"
+    },
+    {
+      "id":9,
+      "ticket": "P2345",
+      "type": "N"
+    },
+    {
+      "id":10,
+      "ticket": "P2345",
+      "type": "N"
+    }
+  ]
+}

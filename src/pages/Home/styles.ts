@@ -1,18 +1,17 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin: 0 auto;
-  width: 80%;
+  width: 1100px;
   height: 100%;
-  background-color: #dfe6e9;
   justify-content: center;
   align-items: center;
+  border-radius: 5px;
 `;
 
 export const Content = styled.div`
   display: flex;
-  height: 530px;
-  flex: 1;
+  height: 500px;
+  background-color:#fff;
   flex-direction : column ;
   justify-content: center;
   align-items: center;

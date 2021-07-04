@@ -7,13 +7,16 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Red Rose', cursive;
   }
-  h1{
-    font-size: 20px;
-  }
   body{
-    width: 100%;
-    height: 100%;
+    display: flex;
     justify-content: center;
-    background-color: #000;
+    align-items: center;
+    background-color: #636e72;
+    padding: 10px;
   }
+
+  h1, h2, h3, h4{
+    color: #636e72;
+  }
+  
 `;
