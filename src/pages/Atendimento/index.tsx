@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Grid,
   Box,
@@ -9,12 +9,14 @@ import { useFetchTicketsQuery } from '../../features/tickets/tickets-api-slice';
 import { HeaderGerencial } from '../../components/HeaderGerencial';
 import { ItemLista } from '../../components/ItemLista';
 import { PassBank } from '../../components/PassBank';
+import { UserContext } from '../../App';
+
 
 
 
 export function Atendimento() {
-
-  const { data = [] } = useFetchTicketsQuery();
+  const context = useContext(UserContext);
+  const { data = [] } = useFetchTicketsQuery(context);
 
 
 
@@ -46,7 +48,7 @@ export function Atendimento() {
           justifyContent="center"
           p="2"
         >
-          <Heading>Senha Chamando</Heading>
+          <Heading>Senha Chamando {context}</Heading>
           <PassBank titleButton="P2345" typeButton="P" />
 
         </Box>

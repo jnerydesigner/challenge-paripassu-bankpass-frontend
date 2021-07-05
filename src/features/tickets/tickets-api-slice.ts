@@ -16,8 +16,8 @@ export const apiSlice = createApi({
   endpoints(builder) {
     return {
       fetchTickets: builder.query<Tickets[], number | void>({
-        query(limit = 5, page = 3) {
-          return `/tickets?_page=${page}&_sort=id&_limit=${limit}&_order=asc`;
+        query(page = 1) {
+          return `/tickets?_page=${page}&_sort=id&_limit=4&_order=asc`;
         }
       })
     }

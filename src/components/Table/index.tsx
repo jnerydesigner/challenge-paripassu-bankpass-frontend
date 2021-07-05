@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useFetchTicketsQuery } from '../../features/tickets/tickets-api-slice'
 import { PhoneIcon, RepeatIcon } from '@chakra-ui/icons'
 import {
@@ -18,9 +18,12 @@ import {
 
 import { PassBank } from '../PassBank';
 import { Pagination } from '../Pagination';
+import { UserContext } from '../../App';
+
 
 export function Table() {
-  const { data = [] } = useFetchTicketsQuery(4);
+  const context = useContext(UserContext);
+  const { data = [] } = useFetchTicketsQuery(context);
 
 
   const handleNextPass = () => {
@@ -30,6 +33,7 @@ export function Table() {
   function handleTicketReload(id: number) {
     alert("Chamar de novo a Senha " + id);
   }
+
 
   return (
     <Grid
