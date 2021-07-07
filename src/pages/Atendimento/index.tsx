@@ -1,30 +1,32 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   Grid,
   Box,
   Heading,
   List
 } from '@chakra-ui/react'
-import { useFetchTicketsQuery } from '../../features/tickets/tickets-api-slice';
+import { useFetchTicketsLimitQuery, useFetchTicketsLimitUmQuery } from '../../features/tickets/tickets-api-slice';
 import { HeaderGerencial } from '../../components/HeaderGerencial';
 import { ItemLista } from '../../components/ItemLista';
-import { PassBank } from '../../components/PassBank';
-import { UserContext } from '../../App';
+import { PassBankChakra } from '../../components/PassBankChakra';
+
+
 
 
 
 
 export function Atendimento() {
-  const context = useContext(UserContext);
-  const { data = [] } = useFetchTicketsQuery(context);
+
+  const { data: tickets = [] } = useFetchTicketsLimitQuery(6);
+  const { data: dados = [] } = useFetchTicketsLimitUmQuery();
+
+
 
 
 
   return (
     <>
       <HeaderGerencial />
-
-
       <Grid
         backgroundColor="gray.100"
         w={1000}
@@ -48,8 +50,8 @@ export function Atendimento() {
           justifyContent="center"
           p="2"
         >
-          <Heading>Senha Chamando {context}</Heading>
-          <PassBank titleButton="P2345" typeButton="P" />
+          <Heading>Senha Chamando</Heading>
+          <PassBankChakra titleButton={dados[0]?.number} typeButton={String(dados[0]?.type)} />
 
         </Box>
         <Box
@@ -58,9 +60,11 @@ export function Atendimento() {
           bg="gray.50"
           p="2"
           display="flex"
+          flexDirection="column"
           justifyContent="center"
           alignItems="center"
         >
+          <Heading>Últimas Senhas chamadas</Heading>
 
           <List
             w="100%"
@@ -70,8 +74,8 @@ export function Atendimento() {
             alignItems="center"
             flexDirection="column"
           >
-            {data.map(itemLista => (
-              <ItemLista key={itemLista.id} pass={itemLista.ticket} typeLista={itemLista.type} />
+            {tickets.map(itemLista => (
+              <ItemLista key={itemLista.id} pass={itemLista.number} typeLista={itemLista.type} />
             ))}
           </List>
 

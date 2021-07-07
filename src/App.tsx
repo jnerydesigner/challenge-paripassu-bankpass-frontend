@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from '../src/store/store'
 import { Routes } from '../src/routes';
 import { GlobalStyle } from './theme/globalStyles';
+// import { store } from './features/tickets/store';
 
 
 export const UserContext = createContext<number>(1);

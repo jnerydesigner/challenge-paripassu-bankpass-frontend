@@ -18,7 +18,9 @@ export const theme = extendTheme({
       "200": "#B3B5C6",
       "100": "#D1D2DC",
       "50": "#EEEEF2",
-    }
+    },
+    pink_baby: "#ffb6c1",
+    blue_baby: "#74b9ff",
   },
   styles: {
     global: {

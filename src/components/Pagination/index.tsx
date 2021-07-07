@@ -5,19 +5,14 @@ import {
 } from '@chakra-ui/react';
 import { ArrowLeftIcon, ArrowRightIcon } from '@chakra-ui/icons';
 
+interface PaginationProps {
+  handleNextPage: () => void;
+  handlePrevPage: () => void;
+}
 
 
+export function Pagination({ handleNextPage, handlePrevPage }: PaginationProps) {
 
-export function Pagination() {
-
-
-  const handlePageNext = (id: number) => {
-    alert("Clicou no Next " + id)
-  }
-
-  const handlePagePrev = (id: number) => {
-    // handleNextPage()
-  }
 
 
 
@@ -32,7 +27,7 @@ export function Pagination() {
         align="center"
       >
         <Button
-          onClick={() => handlePagePrev(2)}
+          onClick={handlePrevPage}
           size="sm"
           fontSize="xs"
           width="4"
@@ -52,7 +47,7 @@ export function Pagination() {
           _hover={{
             bg: "gray.500"
           }}
-          onClick={() => handlePageNext(2)}
+          onClick={handleNextPage}
         >
           <ArrowRightIcon />
         </Button>

@@ -1,23 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTicket } from '../../features/tickets';
 import {
   Grid,
   Heading
 } from '@chakra-ui/react';
 import { HeaderGerencial } from '../../components/HeaderGerencial';
-import { PassBank } from '../../components/PassBank';
+import { PassBankChakra } from '../../components/PassBankChakra';
 import { PassBankButton } from '../../components/PassBankButton';
 import api from '../../services/api';
+import { selectTicket } from '../../features/tickets/store';
 
-
+interface Tickets {
+  id: number;
+  number: string;
+  type: string;
+  status: string;
+}
 
 
 export function Home() {
-  const [ticket, setTicket] = useState('');
+  const [ticket, setTicket] = useState<Tickets>();
+  const ticketsSel = useSelector(selectTicket);
+
+  const dispatch = useDispatch();
+  console.log(ticketsSel);
 
   async function handleSubmitTicket(type: string) {
-    const ticket = await api.get(`users/${type}`).then(response => response.data);
-    setTicket(ticket);
+    const data = {
+      type: type,
+      status: 'SA'
+    }
+    const ticketResponse = await api.post('api/tickets', data).then(response => response.data);
+
+    setTicket(ticketResponse);
+
   }
+
+  const addTicket = useCallback(() => {
+    // const ticke = {
+    //   id: 1,
+    //   number: "P2345",
+    //   type: "P",
+    //   status: "sema"
+    // };
+    dispatch(addTicket());
+  }, [dispatch])
 
   return (
     <>
@@ -42,7 +70,7 @@ export function Home() {
         </Grid>
         <Grid templateColumns="repeat(2, 1fr)" justifyContent="center" alignItems="center">
           <Heading color="gray.500" p="0" mx="auto">Sua senha Gerada é:</Heading>
-          <PassBank titleButton={ticket} typeButton="SN" />
+          <PassBankChakra titleButton={ticket?.number} typeButton="P" />
         </Grid>
 
 

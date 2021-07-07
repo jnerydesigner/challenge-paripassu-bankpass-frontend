@@ -6,7 +6,8 @@ import { apiSlice } from '../features/tickets/tickets-api-slice';
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
-    [apiSlice.reducerPath]: apiSlice.reducer
+    [apiSlice.reducerPath]: apiSlice.reducer,
+
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware().concat(apiSlice.middleware);

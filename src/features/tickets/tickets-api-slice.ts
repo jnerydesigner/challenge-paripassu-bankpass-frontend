@@ -1,27 +1,53 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 
-interface Tickets {
+export interface Ticket {
   id: number;
-  ticket: string;
+  number: string;
   type: string;
+  status: string;
 }
 
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3004",
-
+    baseUrl: "http://localhost:8080/api",
   }),
   endpoints(builder) {
     return {
-      fetchTickets: builder.query<Tickets[], number | void>({
+      fetchTickets: builder.query<Ticket[], number | void>({
+        query() {
+          return `/tickets`;
+        }
+      }),
+      fetchTicketsLimit: builder.query<Ticket[], number | void>({
+        query(limit = 4) {
+          return `/tickets/status/limit?limit=${limit}`;
+        }
+      }),
+      fetchTicketsLimitGerencial: builder.query<Ticket[], number | void>({
+        query(limit = 4) {
+          return `/tickets/gerencial/limit?limit=${limit}`;
+        }
+      }),
+      fetchTicketsLimitUm: builder.query<Ticket[], number | void>({
+        query() {
+          return `/tickets/status/limitum`;
+        }
+      }),
+      fetchTicketsPagination: builder.query<Ticket[], number | void>({
         query(page = 1) {
-          return `/tickets?_page=${page}&_sort=id&_limit=4&_order=asc`;
+          return `/tickets/pagination/${page}`;
         }
       })
     }
   }
 });
 
-export const { useFetchTicketsQuery } = apiSlice;
+export const {
+  useFetchTicketsQuery,
+  useFetchTicketsLimitQuery,
+  useFetchTicketsLimitUmQuery,
+  useFetchTicketsLimitGerencialQuery,
+  useFetchTicketsPaginationQuery
+} = apiSlice;

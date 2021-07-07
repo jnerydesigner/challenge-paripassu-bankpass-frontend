@@ -26,6 +26,7 @@ export function PassBankChakra({ titleButton, typeButton, inAttendance = false }
             display="flex"
             justifyContent="center"
             alignItems="center"
+            mx="auto"
           >
             <Heading color="gray.50">{titleButton}</Heading>
           </Box>
@@ -41,6 +42,7 @@ export function PassBankChakra({ titleButton, typeButton, inAttendance = false }
             display="flex"
             justifyContent="center"
             alignItems="center"
+            mx="auto"
           >
             <Heading color="gray.50">{titleButton}</Heading>
           </Box>
