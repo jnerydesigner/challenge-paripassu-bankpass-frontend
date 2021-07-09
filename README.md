@@ -40,8 +40,8 @@
 
 ## Legendas de Status dos Tickets:
 
-SA - SEM ATENDIMENTO
-FA - FINALIZOU ANTENDIMENTO
+1. SA - SEM ATENDIMENTO
+2. FA - FINALIZOU ANTENDIMENTO
 
 - Aplicação com 3 telas
 
