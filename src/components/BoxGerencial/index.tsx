@@ -4,16 +4,9 @@ import {
 } from '@chakra-ui/react';
 import { LastTicketCall } from '../LastTicketCall';
 import { Table } from '../Table';
-import { Ticket } from '../../features/tickets/tickets-api-slice';
 
-interface TableProps {
-  tickets: Ticket[];
-  changePage: () => void;
-  handleNextPage: () => void;
-  handlePrevPage: () => void;
-}
 
-export function BoxGerencial({ tickets, changePage, handleNextPage, handlePrevPage }: TableProps) {
+export function BoxGerencial() {
   return (
     <Grid
       backgroundColor="gray.100"
@@ -29,7 +22,7 @@ export function BoxGerencial({ tickets, changePage, handleNextPage, handlePrevPa
       borderRadius="5"
     >
       <LastTicketCall />
-      <Table tickets={tickets} changePage={changePage} handleNextPage={handleNextPage} handlePrevPage={handlePrevPage} />
+      <Table />
 
     </Grid>
   );

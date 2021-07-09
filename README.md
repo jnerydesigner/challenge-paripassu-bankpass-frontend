@@ -2,6 +2,8 @@
 
 - Legendas de Status dos Tickets:
 
-* JC - Já foi Chamada
-* EA - Em atendimento
-* SC - Senha Chamada
+* SA - SEM ATENDIMENTO
+* CA - CHAMADA PARA O ATENDIMENTO
+* EA - EM ATENDIMENTO
+* FA - FINALIZOU ANTENDIMENTO
+* NA - NÃO TEVE ATENDIMENTO

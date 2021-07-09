@@ -1,51 +1,43 @@
-import React, { useState, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addTicket } from '../../features/tickets';
+import React, { useCallback, useEffect } from 'react';
 import {
   Grid,
-  Heading
+  Heading,
 } from '@chakra-ui/react';
 import { HeaderGerencial } from '../../components/HeaderGerencial';
 import { PassBankChakra } from '../../components/PassBankChakra';
 import { PassBankButton } from '../../components/PassBankButton';
-import api from '../../services/api';
-import { selectTicket } from '../../features/tickets/store';
+import { useDispatch, useSelector } from "react-redux";
+import { getTicket, postTicket } from '../../redux/actions';
+import { Store } from '../../redux/types';
 
-interface Tickets {
-  id: number;
-  number: string;
-  type: string;
-  status: string;
-}
+
 
 
 export function Home() {
-  const [ticket, setTicket] = useState<Tickets>();
-  const ticketsSel = useSelector(selectTicket);
+  const tickets = useSelector((state: Store) => state.tickets);
+  // console.log(tickets)
+
+
 
   const dispatch = useDispatch();
-  console.log(ticketsSel);
 
-  async function handleSubmitTicket(type: string) {
+  useEffect(() => {
+    dispatch(getTicket());
+  }, [dispatch, tickets]);
+
+
+
+  const handleSubmitTicket = useCallback(async (type: string) => {
     const data = {
       type: type,
-      status: 'SA'
+      status: 'SA',
+      is_attending: false,
     }
-    const ticketResponse = await api.post('api/tickets', data).then(response => response.data);
 
-    setTicket(ticketResponse);
+    dispatch(postTicket(data));
 
-  }
 
-  const addTicket = useCallback(() => {
-    // const ticke = {
-    //   id: 1,
-    //   number: "P2345",
-    //   type: "P",
-    //   status: "sema"
-    // };
-    dispatch(addTicket());
-  }, [dispatch])
+  }, [dispatch]);
 
   return (
     <>
@@ -70,10 +62,8 @@ export function Home() {
         </Grid>
         <Grid templateColumns="repeat(2, 1fr)" justifyContent="center" alignItems="center">
           <Heading color="gray.500" p="0" mx="auto">Sua senha Gerada é:</Heading>
-          <PassBankChakra titleButton={ticket?.number} typeButton="P" />
+          <PassBankChakra titleButton={tickets[0]?.number} typeButton="P" />
         </Grid>
-
-
       </Grid>
     </>
   );

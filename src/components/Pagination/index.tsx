@@ -5,18 +5,13 @@ import {
 } from '@chakra-ui/react';
 import { ArrowLeftIcon, ArrowRightIcon } from '@chakra-ui/icons';
 
+
 interface PaginationProps {
-  handleNextPage: () => void;
   handlePrevPage: () => void;
+  handleNextPage: () => void;
 }
 
-
 export function Pagination({ handleNextPage, handlePrevPage }: PaginationProps) {
-
-
-
-
-
   return (
     <>
       <Stack

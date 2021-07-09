@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Grid,
   Box,
   Heading,
   List
 } from '@chakra-ui/react'
-import { useFetchTicketsLimitQuery, useFetchTicketsLimitUmQuery } from '../../features/tickets/tickets-api-slice';
 import { HeaderGerencial } from '../../components/HeaderGerencial';
 import { ItemLista } from '../../components/ItemLista';
 import { PassBankChakra } from '../../components/PassBankChakra';
+import { Store } from '../../redux/types';
+import { useSelector, useDispatch } from 'react-redux';
+import { getTicketsTypeAtending } from '../../redux/actions';
 
 
 
@@ -17,12 +19,13 @@ import { PassBankChakra } from '../../components/PassBankChakra';
 
 export function Atendimento() {
 
-  const { data: tickets = [] } = useFetchTicketsLimitQuery(6);
-  const { data: dados = [] } = useFetchTicketsLimitUmQuery();
+  const tickets = useSelector((state: Store) => state.tickets);
 
+  const dispatch = useDispatch();
 
-
-
+  useEffect(() => {
+    dispatch(getTicketsTypeAtending());
+  }, [dispatch]);
 
   return (
     <>
@@ -51,8 +54,10 @@ export function Atendimento() {
           p="2"
         >
           <Heading>Senha Chamando</Heading>
-          <PassBankChakra titleButton={dados[0]?.number} typeButton={String(dados[0]?.type)} />
-
+          <PassBankChakra titleButton={tickets[0]?.number} typeButton={String(tickets[0]?.type)} />
+          {tickets[0].type === "P" ?
+            <Heading>PRIORIDADE</Heading> :
+            <Heading>NORMAL</Heading>}
         </Box>
         <Box
           w="100%"
@@ -64,7 +69,7 @@ export function Atendimento() {
           justifyContent="center"
           alignItems="center"
         >
-          <Heading>Últimas Senhas chamadas</Heading>
+          <Heading>Próximas Senhas</Heading>
 
           <List
             w="100%"

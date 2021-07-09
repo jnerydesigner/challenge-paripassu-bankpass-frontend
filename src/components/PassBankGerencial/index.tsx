@@ -12,15 +12,17 @@ interface PassBankProps {
 }
 
 
-export function PassBankChakra({ titleButton, typeButton, inAttendance = false }: PassBankProps) {
+export function PassBankGerencial({ titleButton, typeButton, inAttendance }: PassBankProps) {
+
   return (
     <>
-      {(typeButton === "N") ?
+
+      {(inAttendance === true) ?
         (
           <Box
             width="350px"
             height="180px"
-            bgColor="blue_baby"
+            bgColor="red"
             borderRadius="5px"
             margin="10px"
             display="flex"
@@ -28,7 +30,7 @@ export function PassBankChakra({ titleButton, typeButton, inAttendance = false }
             alignItems="center"
             mx="auto"
           >
-            <Heading color="gray.50">{titleButton}</Heading>
+            <Heading size="4xl" color="gray.50">{titleButton}</Heading>
           </Box>
         )
         :
@@ -36,7 +38,7 @@ export function PassBankChakra({ titleButton, typeButton, inAttendance = false }
           <Box
             width="350px"
             height="180px"
-            bgColor="pink_baby"
+            bgColor="green"
             borderRadius="5px"
             margin="10px"
             display="flex"

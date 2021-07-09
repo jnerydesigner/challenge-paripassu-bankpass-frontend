@@ -1,4 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import api from '../../services/api';
+import { AppDispatch, AppThunk } from '../../store/store';
 
 
 export interface Ticket {
@@ -7,6 +9,20 @@ export interface Ticket {
   type: string;
   status: string;
 }
+
+
+
+
+export function asyncTickets(): AppThunk {
+  return async function (dispatch: AppDispatch) {
+    const response = await api.get('api/tickets');
+
+    console.log(response);
+    return response;
+  }
+}
+
+
 
 export const apiSlice = createApi({
   reducerPath: 'api',
@@ -39,6 +55,17 @@ export const apiSlice = createApi({
         query(page = 1) {
           return `/tickets/pagination/${page}`;
         }
+      }),
+
+      fetchTicketTrue: builder.query<Ticket[], string | void>({
+        query() {
+          return `/tickets/attending`;
+        }
+      }),
+
+      fetchUpdateTicketStatus: builder.mutation({
+        query: ({ id, ...patch }) => ({ url: `post/${id}`, method: 'PATCH', body: patch }),
+        //transformResponse: (response) => response.data,
       })
     }
   }
@@ -49,5 +76,6 @@ export const {
   useFetchTicketsLimitQuery,
   useFetchTicketsLimitUmQuery,
   useFetchTicketsLimitGerencialQuery,
-  useFetchTicketsPaginationQuery
+  useFetchTicketsPaginationQuery,
+  useFetchTicketTrueQuery,
 } = apiSlice;
