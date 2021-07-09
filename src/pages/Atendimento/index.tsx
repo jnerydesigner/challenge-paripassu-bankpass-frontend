@@ -54,7 +54,7 @@ export function Atendimento() {
           p="2"
         >
           <Heading>Senha Chamando</Heading>
-          <PassBankChakra titleButton={tickets[0]?.number} typeButton={String(tickets[0]?.type)} />
+          <PassBankChakra titleButton={tickets[0]?.number} typeButton={tickets[0]?.type} />
           {tickets[0].type === "P" ?
             <Heading>PRIORIDADE</Heading> :
             <Heading>NORMAL</Heading>}

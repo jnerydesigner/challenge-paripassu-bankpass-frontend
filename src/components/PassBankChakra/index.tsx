@@ -28,7 +28,7 @@ export function PassBankChakra({ titleButton, typeButton, inAttendance = false }
             alignItems="center"
             mx="auto"
           >
-            <Heading color="gray.50">{titleButton}</Heading>
+            <Heading size="4xl" color="gray.50">{titleButton}</Heading>
           </Box>
         )
         :

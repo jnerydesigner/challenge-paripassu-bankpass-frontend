@@ -1,5 +1,4 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import { RepeatIcon } from '@chakra-ui/icons'
 import {
   Box,
   Table as TableTickets,
@@ -8,7 +7,6 @@ import {
   Th,
   Tbody,
   Td,
-  Button,
   Divider,
   Heading
 } from '@chakra-ui/react';
@@ -54,9 +52,7 @@ export function Table() {
 
 
 
-  const changePage = useCallback((id: number) => {
-    alert(id);
-  }, []);
+
 
   return (
 
@@ -85,9 +81,7 @@ export function Table() {
               Status da Senha
             </Th>
 
-            <Th textAlign="center">
-              Chamar Senha
-            </Th>
+
           </Tr>
         </Thead>
 
@@ -103,9 +97,7 @@ export function Table() {
               <Td textAlign="center">
                 <Heading fontSize="14px">NÃO CHAMADO</Heading>
               </Td>
-              <Td textAlign="center">
-                <Button p="0" onClick={() => changePage(itemList.id)} leftIcon={<RepeatIcon />} colorScheme="pink" />
-              </Td>
+
             </Tr>
           ))}
 
