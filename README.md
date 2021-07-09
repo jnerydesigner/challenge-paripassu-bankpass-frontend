@@ -38,10 +38,10 @@
 
 * Criar Lista vindo do Redux - Gerenciado por estados
 
-* Legendas de Status dos Tickets:
+## Legendas de Status dos Tickets:
 
-- SA - SEM ATENDIMENTO
-- FA - FINALIZOU ANTENDIMENTO
+SA - SEM ATENDIMENTO
+FA - FINALIZOU ANTENDIMENTO
 
 - Aplicação com 3 telas
 
